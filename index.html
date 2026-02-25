@@ -5,127 +5,234 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Bowker Family Meal Plan</title>
 <style>
-:root{--green:#2d6a4f;--green-light:#40916c;--green-bg:#d8f3dc;--orange:#e76f51;--blue:#264653;--sand:#f4f1de;--card:#fff;--shadow:0 2px 8px rgba(0,0,0,.08)}*{box-sizing:border-box;margin:0;padding:0}body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--sand);color:#333;line-height:1.6}.container{max-width:800px;margin:0 auto;padding:16px}header{background:var(--green);color:#fff;padding:24px 16px;text-align:center}header h1{font-size:1.5rem;font-weight:600}header p{opacity:.85;font-size:.9rem;margin-top:4px}.tabs{display:flex;background:var(--blue);overflow-x:auto}.tab{flex:1;padding:12px 8px;text-align:center;color:rgba(255,255,255,.7);font-size:.85rem;font-weight:500;cursor:pointer;border:none;background:none;min-width:80px;transition:all .2s}.tab.active{color:#fff;border-bottom:3px solid var(--orange)}.tab:hover{color:#fff}.section{display:none;padding:16px 0}.section.active{display:block}.day-card{background:var(--card);border-radius:12px;padding:16px;margin-bottom:12px;box-shadow:var(--shadow);border-left:4px solid var(--green)}.day-card .day-name{font-size:.75rem;text-transform:uppercase;letter-spacing:1px;color:var(--green);font-weight:700}.day-card .meal-title{font-size:1.05rem;font-weight:600;margin:4px 0}.day-card .meal-meta{font-size:.8rem;color:#666}.day-card .meal-notes{font-size:.8rem;color:#888;margin-top:4px;font-style:italic}.shop-category{margin-bottom:16px}.shop-category h3{font-size:.8rem;text-transform:uppercase;letter-spacing:1px;color:var(--green);padding:8px 0 4px;border-bottom:1px solid #ddd}.shop-item{display:flex;align-items:center;padding:8px 0;border-bottom:1px solid #f0f0f0}.shop-item label{flex:1;font-size:.95rem;cursor:pointer}.shop-item input[type=checkbox]{width:20px;height:20px;margin-right:12px;accent-color:var(--green)}.shop-item .qty{color:#888;font-size:.85rem;min-width:80px;text-align:right}.shop-item.checked label{text-decoration:line-through;color:#bbb}.prep-block{background:var(--card);border-radius:12px;padding:16px;margin-bottom:12px;box-shadow:var(--shadow)}.prep-block h3{font-size:.85rem;color:var(--orange);text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px}.prep-task{display:flex;align-items:flex-start;padding:6px 0;font-size:.9rem}.prep-task .time-badge{background:var(--green-bg);color:var(--green);font-size:.75rem;padding:2px 8px;border-radius:10px;margin-right:10px;white-space:nowrap;font-weight:500;min-width:60px;text-align:center}.prep-task .task-text{flex:1}.recipe-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}.recipe-thumb{background:var(--card);border-radius:12px;box-shadow:var(--shadow);cursor:pointer;overflow:hidden;transition:transform .15s}.recipe-thumb:hover{transform:scale(1.03)}.recipe-thumb .thumb-icon{height:90px;display:flex;align-items:center;justify-content:center;font-size:2.5rem;background:var(--green-bg)}.recipe-thumb .thumb-label{padding:10px}.recipe-thumb .thumb-day{font-size:.7rem;text-transform:uppercase;letter-spacing:1px;color:var(--green);font-weight:700}.recipe-thumb .thumb-title{font-size:.8rem;font-weight:600;margin-top:2px;line-height:1.3}.recipe-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:100;overflow-y:auto;-webkit-overflow-scrolling:touch}.recipe-overlay.open{display:flex;justify-content:center;align-items:flex-start;padding:24px 12px}.recipe-detail{background:var(--card);border-radius:16px;max-width:600px;width:100%;padding:24px;position:relative;box-shadow:0 8px 30px rgba(0,0,0,.2)}.recipe-detail .close-btn{position:absolute;top:12px;right:16px;font-size:1.5rem;cursor:pointer;color:#999;background:none;border:none;line-height:1}.recipe-detail h3{font-size:1.1rem;color:var(--blue);margin-bottom:4px;padding-right:32px}.recipe-detail .recipe-info{font-size:.8rem;color:#888;margin-bottom:16px}.recipe-detail h4{font-size:.8rem;text-transform:uppercase;color:var(--green);letter-spacing:.5px;margin:16px 0 6px}.recipe-detail ul{padding-left:20px;font-size:.9rem}.recipe-detail ul li{margin-bottom:3px}.recipe-detail ol{padding-left:20px;font-size:.9rem}.recipe-detail ol li{margin-bottom:6px}.footer{text-align:center;padding:20px;font-size:.75rem;color:#aaa}@media(max-width:480px){.container{padding:8px}}
+  :root {
+    --green: #2d6a4f; --green-light: #40916c; --green-bg: #d8f3dc;
+    --orange: #e76f51; --blue: #264653; --sand: #f4f1de;
+    --card: #ffffff; --shadow: 0 2px 8px rgba(0,0,0,0.08);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--sand); color: #333; line-height: 1.6; }
+  .container { max-width: 800px; margin: 0 auto; padding: 16px; }
+  header { background: var(--green); color: white; padding: 24px 16px; text-align: center; }
+  header h1 { font-size: 1.5rem; font-weight: 600; }
+  header p { opacity: 0.85; font-size: 0.9rem; margin-top: 4px; }
+  .tabs { display: flex; background: var(--blue); overflow-x: auto; }
+  .tab { flex: 1; padding: 12px 8px; text-align: center; color: rgba(255,255,255,0.7); font-size: 0.85rem; font-weight: 500; cursor: pointer; border: none; background: none; min-width: 80px; transition: all 0.2s; }
+  .tab.active { color: white; border-bottom: 3px solid var(--orange); }
+  .tab:hover { color: white; }
+  .section { display: none; padding: 16px 0; }
+  .section.active { display: block; }
+  .day-card { background: var(--card); border-radius: 12px; padding: 16px; margin-bottom: 12px; box-shadow: var(--shadow); border-left: 4px solid var(--green); }
+  .day-card .day-name { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; color: var(--green); font-weight: 700; }
+  .day-card .meal-title { font-size: 1.05rem; font-weight: 600; margin: 4px 0; }
+  .day-card .meal-meta { font-size: 0.8rem; color: #666; }
+  .day-card .meal-notes { font-size: 0.8rem; color: #888; margin-top: 4px; font-style: italic; }
+  .shop-category { margin-bottom: 16px; }
+  .shop-category h3 { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; color: var(--green); padding: 8px 0 4px; border-bottom: 1px solid #ddd; }
+  .shop-item { display: flex; align-items: center; padding: 8px 0; border-bottom: 1px solid #f0f0f0; }
+  .shop-item label { flex: 1; font-size: 0.95rem; cursor: pointer; }
+  .shop-item input[type=checkbox] { width: 20px; height: 20px; margin-right: 12px; accent-color: var(--green); }
+  .shop-item .qty { color: #888; font-size: 0.85rem; min-width: 80px; text-align: right; }
+  .shop-item.checked label { text-decoration: line-through; color: #bbb; }
+  .prep-block { background: var(--card); border-radius: 12px; padding: 16px; margin-bottom: 12px; box-shadow: var(--shadow); }
+  .prep-block h3 { font-size: 0.85rem; color: var(--orange); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; }
+  .prep-task { display: flex; align-items: flex-start; padding: 6px 0; font-size: 0.9rem; }
+  .prep-task .time-badge { background: var(--green-bg); color: var(--green); font-size: 0.75rem; padding: 2px 8px; border-radius: 10px; margin-right: 10px; white-space: nowrap; font-weight: 500; min-width: 60px; text-align: center; }
+  .prep-task .task-text { flex: 1; }
+  .recipe-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; }
+  .recipe-thumb { background: var(--card); border-radius: 12px; box-shadow: var(--shadow); cursor: pointer; overflow: hidden; transition: transform 0.15s; }
+  .recipe-thumb:hover { transform: scale(1.03); }
+  .recipe-thumb .thumb-icon { height: 90px; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; background: var(--green-bg); }
+  .recipe-thumb .thumb-label { padding: 10px; }
+  .recipe-thumb .thumb-day { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; color: var(--green); font-weight: 700; }
+  .recipe-thumb .thumb-title { font-size: 0.8rem; font-weight: 600; margin-top: 2px; line-height: 1.3; }
+  .recipe-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 100; overflow-y: auto; -webkit-overflow-scrolling: touch; }
+  .recipe-overlay.open { display: flex; justify-content: center; align-items: flex-start; padding: 24px 12px; }
+  .recipe-detail { background: var(--card); border-radius: 16px; max-width: 600px; width: 100%; padding: 24px; position: relative; box-shadow: 0 8px 30px rgba(0,0,0,0.2); }
+  .recipe-detail .close-btn { position: absolute; top: 12px; right: 16px; font-size: 1.5rem; cursor: pointer; color: #999; background: none; border: none; line-height: 1; }
+  .recipe-detail h3 { font-size: 1.1rem; color: var(--blue); margin-bottom: 4px; padding-right: 32px; }
+  .recipe-detail .recipe-info { font-size: 0.8rem; color: #888; margin-bottom: 16px; }
+  .recipe-detail h4 { font-size: 0.8rem; text-transform: uppercase; color: var(--green); letter-spacing: 0.5px; margin: 16px 0 6px; }
+  .recipe-detail ul { padding-left: 20px; font-size: 0.9rem; }
+  .recipe-detail ul li { margin-bottom: 3px; }
+  .recipe-detail ol { padding-left: 20px; font-size: 0.9rem; }
+  .recipe-detail ol li { margin-bottom: 6px; }
+  .footer { text-align: center; padding: 20px; font-size: 0.75rem; color: #aaa; }
+  @media (max-width: 480px) { .container { padding: 8px; } }
 </style>
 </head>
 <body>
-<header><h1>Bowker Family Meal Plan</h1><p>Week of 22 February 2026 &middot; All meals gluten-free</p></header>
-<div class="tabs"><button class="tab active" onclick="showTab('meals')">Meals</button><button class="tab" onclick="showTab('shopping')">Shopping</button><button class="tab" onclick="showTab('prep')">Prep</button><button class="tab" onclick="showTab('recipes')">Recipes</button></div>
+
+<header>
+  <h1>Bowker Family Meal Plan</h1>
+  <p>Week of 22 February 2026 &middot; All meals are gluten-free</p>
+</header>
+
+<div class="tabs">
+  <button class="tab active" onclick="showTab('meals')">Meals</button>
+  <button class="tab" onclick="showTab('shopping')">Shopping</button>
+  <button class="tab" onclick="showTab('prep')">Prep</button>
+  <button class="tab" onclick="showTab('recipes')">Recipes</button>
+</div>
+
 <div class="container">
+
 <div class="section active" id="meals">
-<div class="day-card"><div class="day-name">Sunday</div><div class="meal-title">Herb-Crusted Chicken Breast with Roasted Sweet Potatoes &amp; Steamed Broccoli</div><div class="meal-meta">Chicken breast (lean) &middot; 35 min</div><div class="meal-notes">Prep chicken marinade Saturday. Batch-roast extra sweet potatoes for Tuesday.</div></div>
-<div class="day-card"><div class="day-name">Monday</div><div class="meal-title">Teriyaki Salmon with Jasmine Rice &amp; Edamame Salad</div><div class="meal-meta">Salmon fillet &middot; 20 min</div><div class="meal-notes">Use GF tamari instead of soy sauce.</div></div>
-<div class="day-card"><div class="day-name">Tuesday</div><div class="meal-title">Turkey Taco Bowls</div><div class="meal-meta">Ground turkey (lean) &middot; 25 min</div><div class="meal-notes">Use leftover rice from Monday. Corn tortillas on the side (GF).</div></div>
-<div class="day-card"><div class="day-name">Wednesday</div><div class="meal-title">Lemon Garlic Shrimp Pasta (GF penne) with Spinach &amp; Cherry Tomatoes</div><div class="meal-meta">Shrimp &middot; 20 min</div><div class="meal-notes">Use GF pasta. Prep garlic butter sauce ahead.</div></div>
-<div class="day-card"><div class="day-name">Thursday</div><div class="meal-title">Slow Cooker Chicken Tikka Masala with Basmati Rice &amp; Cucumber Raita</div><div class="meal-meta">Chicken thigh (skinless) &middot; Slow cooker</div><div class="meal-notes">Set slow cooker in the morning. Use GF-certified spice paste.</div></div>
-<div class="day-card"><div class="day-name">Friday</div><div class="meal-title">Grilled Lean Steak with Baked Potatoes &amp; Caesar Salad</div><div class="meal-meta">Sirloin steak (lean) &middot; 30 min</div><div class="meal-notes">Trim visible fat. Yoghurt-based Caesar dressing.</div></div>
-<div class="day-card"><div class="day-name">Saturday</div><div class="meal-title">Homemade Margherita Pizza on GF Bases with Side Salad</div><div class="meal-meta">Mozzarella + optional chicken &middot; Fun family cook</div><div class="meal-notes">Use store-bought GF pizza bases. Let kids top their own!</div></div>
+  <div class="day-card"><div class="day-name">Sunday</div><div class="meal-title">Herb-Crusted Chicken Breast with Roasted Sweet Potatoes & Steamed Broccoli</div><div class="meal-meta">Chicken breast (lean) &middot; 35 min cook</div><div class="meal-notes">Prep chicken marinade Saturday. Batch-roast extra sweet potatoes for Tuesday.</div></div>
+  <div class="day-card"><div class="day-name">Monday</div><div class="meal-title">Teriyaki Salmon with Jasmine Rice & Edamame Salad</div><div class="meal-meta">Salmon fillet &middot; 20 min cook</div><div class="meal-notes">Use GF tamari instead of soy sauce. Quick 20-min meal.</div></div>
+  <div class="day-card"><div class="day-name">Tuesday</div><div class="meal-title">Turkey Taco Bowls &mdash; Rice, Black Beans, Corn, Avocado, Salsa</div><div class="meal-meta">Ground turkey (lean) &middot; 25 min</div><div class="meal-notes">Use leftover rice from Monday. Corn tortillas on the side (GF).</div></div>
+  <div class="day-card"><div class="day-name">Wednesday</div><div class="meal-title">Lemon Garlic Shrimp Pasta (GF penne) with Spinach & Cherry Tomatoes</div><div class="meal-meta">Shrimp &middot; 20 min</div><div class="meal-notes">Use GF pasta (Barilla or similar). Prep garlic butter sauce ahead.</div></div>
+  <div class="day-card"><div class="day-name">Thursday</div><div class="meal-title">Slow Cooker Chicken Tikka Masala with Basmati Rice & Cucumber Raita</div><div class="meal-meta">Chicken thigh (skinless) &middot; Slow cooker</div><div class="meal-notes">Set slow cooker in the morning. Use GF-certified spice paste.</div></div>
+  <div class="day-card"><div class="day-name">Friday</div><div class="meal-title">Grilled Lean Steak with Baked Potatoes & Caesar Salad</div><div class="meal-meta">Sirloin steak (lean cut) &middot; 30 min</div><div class="meal-notes">Trim visible fat. Use GF croutons or skip. Yoghurt-based Caesar dressing.</div></div>
+  <div class="day-card"><div class="day-name">Saturday</div><div class="meal-title">Homemade Margherita Pizza on GF Bases with Side Salad</div><div class="meal-meta">Mozzarella + optional chicken &middot; Fun family cook</div><div class="meal-notes">Use store-bought GF pizza bases. Let kids top their own!</div></div>
 </div>
+
 <div class="section" id="shopping">
-<div class="shop-category"><h3>Proteins</h3>
-<div class="shop-item"><input type="checkbox" id="s1"><label for="s1">Chicken breasts (boneless, skinless)</label><span class="qty">800g</span></div>
-<div class="shop-item"><input type="checkbox" id="s2"><label for="s2">Chicken thighs (skinless)</label><span class="qty">600g</span></div>
-<div class="shop-item"><input type="checkbox" id="s3"><label for="s3">Salmon fillets</label><span class="qty">4 (~600g)</span></div>
-<div class="shop-item"><input type="checkbox" id="s4"><label for="s4">Raw shrimp (peeled)</label><span class="qty">500g</span></div>
-<div class="shop-item"><input type="checkbox" id="s5"><label for="s5">Lean ground turkey</label><span class="qty">500g</span></div>
-<div class="shop-item"><input type="checkbox" id="s6"><label for="s6">Sirloin steak (lean)</label><span class="qty">600g</span></div>
-<div class="shop-item"><input type="checkbox" id="s7"><label for="s7">Mozzarella cheese</label><span class="qty">2 balls</span></div>
+  <div class="shop-category"><h3>Proteins</h3>
+    <div class="shop-item"><input type="checkbox" id="s1"><label for="s1">Chicken breasts (boneless, skinless)</label><span class="qty">800g</span></div>
+    <div class="shop-item"><input type="checkbox" id="s2"><label for="s2">Chicken thighs (skinless)</label><span class="qty">600g</span></div>
+    <div class="shop-item"><input type="checkbox" id="s3"><label for="s3">Salmon fillets</label><span class="qty">4 (~600g)</span></div>
+    <div class="shop-item"><input type="checkbox" id="s4"><label for="s4">Raw shrimp (peeled, deveined)</label><span class="qty">500g</span></div>
+    <div class="shop-item"><input type="checkbox" id="s5"><label for="s5">Lean ground turkey</label><span class="qty">500g</span></div>
+    <div class="shop-item"><input type="checkbox" id="s6"><label for="s6">Sirloin steak (lean)</label><span class="qty">600g</span></div>
+    <div class="shop-item"><input type="checkbox" id="s7"><label for="s7">Mozzarella cheese</label><span class="qty">2 balls</span></div>
+  </div>
+  <div class="shop-category"><h3>Produce</h3>
+    <div class="shop-item"><input type="checkbox" id="s10"><label for="s10">Sweet potatoes</label><span class="qty">4 medium</span></div>
+    <div class="shop-item"><input type="checkbox" id="s11"><label for="s11">Broccoli</label><span class="qty">1 large head</span></div>
+    <div class="shop-item"><input type="checkbox" id="s12"><label for="s12">Edamame (frozen ok)</label><span class="qty">300g</span></div>
+    <div class="shop-item"><input type="checkbox" id="s13"><label for="s13">Spinach (fresh)</label><span class="qty">200g bag</span></div>
+    <div class="shop-item"><input type="checkbox" id="s14"><label for="s14">Cherry tomatoes</label><span class="qty">2 punnets</span></div>
+    <div class="shop-item"><input type="checkbox" id="s15"><label for="s15">Avocados</label><span class="qty">2</span></div>
+    <div class="shop-item"><input type="checkbox" id="s16"><label for="s16">Cucumber</label><span class="qty">2</span></div>
+    <div class="shop-item"><input type="checkbox" id="s17"><label for="s17">Lettuce (romaine or gem)</label><span class="qty">2 heads</span></div>
+    <div class="shop-item"><input type="checkbox" id="s18"><label for="s18">Lemons</label><span class="qty">4</span></div>
+    <div class="shop-item"><input type="checkbox" id="s19"><label for="s19">Limes</label><span class="qty">2</span></div>
+    <div class="shop-item"><input type="checkbox" id="s20"><label for="s20">Fresh ginger</label><span class="qty">1 piece</span></div>
+    <div class="shop-item"><input type="checkbox" id="s21"><label for="s21">Garlic</label><span class="qty">2 bulbs</span></div>
+    <div class="shop-item"><input type="checkbox" id="s22"><label for="s22">Fresh herbs (coriander, rosemary, thyme, basil)</label><span class="qty">1 each</span></div>
+    <div class="shop-item"><input type="checkbox" id="s23"><label for="s23">Baking potatoes</label><span class="qty">4 large</span></div>
+    <div class="shop-item"><input type="checkbox" id="s24"><label for="s24">Corn on the cob or tinned sweetcorn</label><span class="qty">4 / 1 tin</span></div>
+  </div>
+  <div class="shop-category"><h3>Pantry / Cupboard</h3>
+    <div class="shop-item"><input type="checkbox" id="s30"><label for="s30">GF penne pasta</label><span class="qty">400g</span></div>
+    <div class="shop-item"><input type="checkbox" id="s31"><label for="s31">Jasmine rice</label><span class="qty">500g</span></div>
+    <div class="shop-item"><input type="checkbox" id="s32"><label for="s32">Basmati rice</label><span class="qty">300g</span></div>
+    <div class="shop-item"><input type="checkbox" id="s33"><label for="s33">Tinned black beans</label><span class="qty">1 tin</span></div>
+    <div class="shop-item"><input type="checkbox" id="s34"><label for="s34">Tinned chopped tomatoes</label><span class="qty">1 tin</span></div>
+    <div class="shop-item"><input type="checkbox" id="s35"><label for="s35">Coconut cream / milk</label><span class="qty">1 tin</span></div>
+    <div class="shop-item"><input type="checkbox" id="s36"><label for="s36">GF tamari</label><span class="qty">check</span></div>
+    <div class="shop-item"><input type="checkbox" id="s37"><label for="s37">Honey</label><span class="qty">check</span></div>
+    <div class="shop-item"><input type="checkbox" id="s38"><label for="s38">GF tikka masala paste</label><span class="qty">1 jar</span></div>
+    <div class="shop-item"><input type="checkbox" id="s39"><label for="s39">Olive oil</label><span class="qty">check</span></div>
+    <div class="shop-item"><input type="checkbox" id="s40"><label for="s40">Salsa (GF)</label><span class="qty">1 jar</span></div>
+    <div class="shop-item"><input type="checkbox" id="s41"><label for="s41">GF pizza bases</label><span class="qty">4</span></div>
+    <div class="shop-item"><input type="checkbox" id="s42"><label for="s42">Passata / pizza sauce</label><span class="qty">1 jar</span></div>
+  </div>
+  <div class="shop-category"><h3>Dairy</h3>
+    <div class="shop-item"><input type="checkbox" id="s50"><label for="s50">Greek yoghurt</label><span class="qty">500g</span></div>
+    <div class="shop-item"><input type="checkbox" id="s51"><label for="s51">Parmesan</label><span class="qty">100g</span></div>
+    <div class="shop-item"><input type="checkbox" id="s52"><label for="s52">Butter</label><span class="qty">check</span></div>
+  </div>
 </div>
-<div class="shop-category"><h3>Produce</h3>
-<div class="shop-item"><input type="checkbox" id="s10"><label for="s10">Sweet potatoes</label><span class="qty">4 medium</span></div>
-<div class="shop-item"><input type="checkbox" id="s11"><label for="s11">Broccoli</label><span class="qty">1 large head</span></div>
-<div class="shop-item"><input type="checkbox" id="s12"><label for="s12">Edamame (frozen ok)</label><span class="qty">300g</span></div>
-<div class="shop-item"><input type="checkbox" id="s13"><label for="s13">Spinach (fresh)</label><span class="qty">200g bag</span></div>
-<div class="shop-item"><input type="checkbox" id="s14"><label for="s14">Cherry tomatoes</label><span class="qty">2 punnets</span></div>
-<div class="shop-item"><input type="checkbox" id="s15"><label for="s15">Avocados</label><span class="qty">2</span></div>
-<div class="shop-item"><input type="checkbox" id="s16"><label for="s16">Cucumber</label><span class="qty">2</span></div>
-<div class="shop-item"><input type="checkbox" id="s17"><label for="s17">Lettuce (romaine)</label><span class="qty">2 heads</span></div>
-<div class="shop-item"><input type="checkbox" id="s18"><label for="s18">Lemons</label><span class="qty">4</span></div>
-<div class="shop-item"><input type="checkbox" id="s19"><label for="s19">Limes</label><span class="qty">2</span></div>
-<div class="shop-item"><input type="checkbox" id="s20"><label for="s20">Fresh ginger</label><span class="qty">1 piece</span></div>
-<div class="shop-item"><input type="checkbox" id="s21"><label for="s21">Garlic</label><span class="qty">2 bulbs</span></div>
-<div class="shop-item"><input type="checkbox" id="s22"><label for="s22">Fresh herbs (coriander, rosemary, thyme, basil)</label><span class="qty">1 each</span></div>
-<div class="shop-item"><input type="checkbox" id="s23"><label for="s23">Baking potatoes</label><span class="qty">4 large</span></div>
-<div class="shop-item"><input type="checkbox" id="s24"><label for="s24">Corn (tinned or fresh)</label><span class="qty">4 / 1 tin</span></div>
-</div>
-<div class="shop-category"><h3>Pantry / Cupboard</h3>
-<div class="shop-item"><input type="checkbox" id="s30"><label for="s30">GF penne pasta</label><span class="qty">400g</span></div>
-<div class="shop-item"><input type="checkbox" id="s31"><label for="s31">Jasmine rice</label><span class="qty">500g</span></div>
-<div class="shop-item"><input type="checkbox" id="s32"><label for="s32">Basmati rice</label><span class="qty">300g</span></div>
-<div class="shop-item"><input type="checkbox" id="s33"><label for="s33">Tinned black beans</label><span class="qty">1 tin</span></div>
-<div class="shop-item"><input type="checkbox" id="s34"><label for="s34">Tinned chopped tomatoes</label><span class="qty">1 tin</span></div>
-<div class="shop-item"><input type="checkbox" id="s35"><label for="s35">Coconut cream</label><span class="qty">1 tin</span></div>
-<div class="shop-item"><input type="checkbox" id="s36"><label for="s36">GF tamari</label><span class="qty">check</span></div>
-<div class="shop-item"><input type="checkbox" id="s37"><label for="s37">Honey</label><span class="qty">check</span></div>
-<div class="shop-item"><input type="checkbox" id="s38"><label for="s38">GF tikka masala paste</label><span class="qty">1 jar</span></div>
-<div class="shop-item"><input type="checkbox" id="s39"><label for="s39">Olive oil</label><span class="qty">check</span></div>
-<div class="shop-item"><input type="checkbox" id="s40"><label for="s40">Salsa (GF)</label><span class="qty">1 jar</span></div>
-<div class="shop-item"><input type="checkbox" id="s41"><label for="s41">GF pizza bases</label><span class="qty">4</span></div>
-<div class="shop-item"><input type="checkbox" id="s42"><label for="s42">Passata / pizza sauce</label><span class="qty">1 jar</span></div>
-</div>
-<div class="shop-category"><h3>Dairy</h3>
-<div class="shop-item"><input type="checkbox" id="s50"><label for="s50">Greek yoghurt</label><span class="qty">500g</span></div>
-<div class="shop-item"><input type="checkbox" id="s51"><label for="s51">Parmesan</label><span class="qty">100g</span></div>
-<div class="shop-item"><input type="checkbox" id="s52"><label for="s52">Butter</label><span class="qty">check</span></div>
-</div>
-</div>
+
 <div class="section" id="prep">
-<div class="prep-block"><h3>Sunday Batch Prep (4-6pm) &mdash; ~60-75 min</h3>
-<div class="prep-task"><span class="time-badge">10 min</span><span class="task-text">Marinate chicken breasts: olive oil, garlic, rosemary, thyme, lemon zest</span></div>
-<div class="prep-task"><span class="time-badge">5 min</span><span class="task-text">Wash &amp; chop broccoli, store in container</span></div>
-<div class="prep-task"><span class="time-badge">10 min</span><span class="task-text">Peel &amp; cube sweet potatoes, toss in oil, store in fridge</span></div>
-<div class="prep-task"><span class="time-badge">20 min</span><span class="task-text">Cook large batch of jasmine rice (for Mon + Tue)</span></div>
-<div class="prep-task"><span class="time-badge">10 min</span><span class="task-text">Make teriyaki sauce: GF tamari, honey, garlic, ginger, cornflour</span></div>
-<div class="prep-task"><span class="time-badge">10 min</span><span class="task-text">Prep tikka masala marinade for Thursday chicken</span></div>
-<div class="prep-task"><span class="time-badge">10 min</span><span class="task-text">Wash &amp; prep salad veg, store in damp towel</span></div>
+  <div class="prep-block"><h3>Sunday Batch Prep (4-6pm) &mdash; ~60-75 min total</h3>
+    <div class="prep-task"><span class="time-badge">10 min</span><span class="task-text">Marinate chicken breasts: olive oil, garlic, rosemary, thyme, lemon zest</span></div>
+    <div class="prep-task"><span class="time-badge">5 min</span><span class="task-text">Wash & chop broccoli, store in container</span></div>
+    <div class="prep-task"><span class="time-badge">10 min</span><span class="task-text">Peel & cube sweet potatoes, toss in oil &mdash; store in fridge</span></div>
+    <div class="prep-task"><span class="time-badge">20 min</span><span class="task-text">Cook a large batch of jasmine rice (for Mon + Tue)</span></div>
+    <div class="prep-task"><span class="time-badge">10 min</span><span class="task-text">Make teriyaki sauce: GF tamari, honey, garlic, ginger, cornflour</span></div>
+    <div class="prep-task"><span class="time-badge">10 min</span><span class="task-text">Prep tikka masala marinade for Thursday chicken</span></div>
+    <div class="prep-task"><span class="time-badge">10 min</span><span class="task-text">Wash & prep salad veg &mdash; store in damp towel</span></div>
+  </div>
+  <div class="prep-block"><h3>Tuesday 5pm &mdash; 25 min</h3>
+    <div class="prep-task"><span class="time-badge">15 min</span><span class="task-text">Brown ground turkey, season with cumin, paprika, garlic powder</span></div>
+    <div class="prep-task"><span class="time-badge">10 min</span><span class="task-text">Open & drain black beans, prep toppings</span></div>
+  </div>
+  <div class="prep-block"><h3>Wednesday 5pm &mdash; 17 min</h3>
+    <div class="prep-task"><span class="time-badge">12 min</span><span class="task-text">Boil GF pasta (watch timing &mdash; overcooks easily)</span></div>
+    <div class="prep-task"><span class="time-badge">5 min</span><span class="task-text">Prep shrimp: pat dry, season with salt, pepper, chilli flakes</span></div>
+  </div>
+  <div class="prep-block"><h3>Thursday 7am &mdash; 10 min</h3>
+    <div class="prep-task"><span class="time-badge">10 min</span><span class="task-text">Add marinated chicken + tomatoes + coconut cream + tikka paste to slow cooker. Set on low.</span></div>
+  </div>
+  <div class="prep-block"><h3>Friday 5pm &mdash; 10 min</h3>
+    <div class="prep-task"><span class="time-badge">5 min</span><span class="task-text">Take steak out of fridge 30 min before cooking</span></div>
+    <div class="prep-task"><span class="time-badge">5 min</span><span class="task-text">Prep Caesar dressing: yoghurt, lemon, garlic, parmesan, olive oil</span></div>
+  </div>
 </div>
-<div class="prep-block"><h3>Tuesday 5pm &mdash; 25 min</h3>
-<div class="prep-task"><span class="time-badge">15 min</span><span class="task-text">Brown ground turkey, season with cumin, paprika, garlic powder</span></div>
-<div class="prep-task"><span class="time-badge">10 min</span><span class="task-text">Open &amp; drain black beans, prep toppings</span></div>
-</div>
-<div class="prep-block"><h3>Wednesday 5pm &mdash; 17 min</h3>
-<div class="prep-task"><span class="time-badge">12 min</span><span class="task-text">Boil GF pasta (watch timing, overcooks easily)</span></div>
-<div class="prep-task"><span class="time-badge">5 min</span><span class="task-text">Prep shrimp: pat dry, season with salt, pepper, chilli flakes</span></div>
-</div>
-<div class="prep-block"><h3>Thursday 7am &mdash; 10 min</h3>
-<div class="prep-task"><span class="time-badge">10 min</span><span class="task-text">Add marinated chicken + tomatoes + coconut cream + tikka paste to slow cooker</span></div>
-</div>
-<div class="prep-block"><h3>Friday 5pm &mdash; 10 min</h3>
-<div class="prep-task"><span class="time-badge">5 min</span><span class="task-text">Take steak out of fridge 30 min before cooking</span></div>
-<div class="prep-task"><span class="time-badge">5 min</span><span class="task-text">Prep Caesar dressing: yoghurt, lemon, garlic, parmesan, olive oil</span></div>
-</div>
-</div>
+
 <div class="section" id="recipes">
-<div class="recipe-grid">
-<div class="recipe-thumb" onclick="openRecipe('sun')"><div class="thumb-icon">&#127831;</div><div class="thumb-label"><div class="thumb-day">Sunday</div><div class="thumb-title">Herb-Crusted Chicken</div></div></div>
-<div class="recipe-thumb" onclick="openRecipe('mon')"><div class="thumb-icon">&#127843;</div><div class="thumb-label"><div class="thumb-day">Monday</div><div class="thumb-title">Teriyaki Salmon</div></div></div>
-<div class="recipe-thumb" onclick="openRecipe('tue')"><div class="thumb-icon">&#127790;</div><div class="thumb-label"><div class="thumb-day">Tuesday</div><div class="thumb-title">Turkey Taco Bowls</div></div></div>
-<div class="recipe-thumb" onclick="openRecipe('wed')"><div class="thumb-icon">&#127844;</div><div class="thumb-label"><div class="thumb-day">Wednesday</div><div class="thumb-title">Shrimp Pasta</div></div></div>
-<div class="recipe-thumb" onclick="openRecipe('thu')"><div class="thumb-icon">&#127835;</div><div class="thumb-label"><div class="thumb-day">Thursday</div><div class="thumb-title">Chicken Tikka Masala</div></div></div>
-<div class="recipe-thumb" onclick="openRecipe('fri')"><div class="thumb-icon">&#129385;</div><div class="thumb-label"><div class="thumb-day">Friday</div><div class="thumb-title">Steak &amp; Baked Potato</div></div></div>
-<div class="recipe-thumb" onclick="openRecipe('sat')"><div class="thumb-icon">&#127829;</div><div class="thumb-label"><div class="thumb-day">Saturday</div><div class="thumb-title">Margherita Pizza</div></div></div>
+  <div class="recipe-grid">
+    <div class="recipe-thumb" onclick="openRecipe('sun')"><div class="thumb-icon">&#127831;</div><div class="thumb-label"><div class="thumb-day">Sunday</div><div class="thumb-title">Herb-Crusted Chicken</div></div></div>
+    <div class="recipe-thumb" onclick="openRecipe('mon')"><div class="thumb-icon">&#127843;</div><div class="thumb-label"><div class="thumb-day">Monday</div><div class="thumb-title">Teriyaki Salmon</div></div></div>
+    <div class="recipe-thumb" onclick="openRecipe('tue')"><div class="thumb-icon">&#127790;</div><div class="thumb-label"><div class="thumb-day">Tuesday</div><div class="thumb-title">Turkey Taco Bowls</div></div></div>
+    <div class="recipe-thumb" onclick="openRecipe('wed')"><div class="thumb-icon">&#127844;</div><div class="thumb-label"><div class="thumb-day">Wednesday</div><div class="thumb-title">Shrimp Pasta</div></div></div>
+    <div class="recipe-thumb" onclick="openRecipe('thu')"><div class="thumb-icon">&#127835;</div><div class="thumb-label"><div class="thumb-day">Thursday</div><div class="thumb-title">Chicken Tikka Masala</div></div></div>
+    <div class="recipe-thumb" onclick="openRecipe('fri')"><div class="thumb-icon">&#129385;</div><div class="thumb-label"><div class="thumb-day">Friday</div><div class="thumb-title">Steak & Baked Potato</div></div></div>
+    <div class="recipe-thumb" onclick="openRecipe('sat')"><div class="thumb-icon">&#127829;</div><div class="thumb-label"><div class="thumb-day">Saturday</div><div class="thumb-title">Margherita Pizza</div></div></div>
+  </div>
 </div>
+
 </div>
-</div>
+
 <div class="recipe-overlay" id="recipeOverlay" onclick="if(event.target===this)closeRecipe()">
-<div class="recipe-detail" id="recipeContent"></div>
+  <div class="recipe-detail" id="recipeContent"></div>
 </div>
+
 <div class="footer">Updated 22 Feb 2026 &middot; All meals gluten-free</div>
+
 <script>
-function showTab(id){document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.getElementById(id).classList.add('active');event.target.classList.add('active')}
-document.querySelectorAll('.shop-item input[type=checkbox]').forEach(cb=>{cb.addEventListener('change',function(){this.closest('.shop-item').classList.toggle('checked',this.checked)})})
-const R={
-sun:{title:'Sunday \u2014 Herb-Crusted Chicken Breast',info:'Serves 4 \u00b7 Prep 15 min \u00b7 Cook 35 min',ingredients:['4 chicken breasts (boneless, skinless)','4 medium sweet potatoes, cubed','1 large head broccoli, florets','3 tbsp olive oil','3 cloves garlic, minced','1 tbsp fresh rosemary','1 tbsp fresh thyme','Zest of 1 lemon','Salt & pepper'],steps:['Preheat oven to 200\u00b0C.','Remove chicken from marinade. Place on lined tray.','Toss sweet potatoes with oil, salt & pepper on separate tray.','Roast both 30-35 min until chicken reaches 74\u00b0C.','Steam broccoli last 5 min.','Serve chicken sliced over sweet potatoes and broccoli.']},
-mon:{title:'Monday \u2014 Teriyaki Salmon',info:'Serves 4 \u00b7 20 min total',ingredients:['4 salmon fillets','4 tbsp GF tamari','2 tbsp honey','1 tbsp rice vinegar','1 tsp sesame oil','2 cloves garlic','1 tsp ginger, grated','1 tsp cornflour + 1 tbsp water','Jasmine rice (pre-cooked)','300g edamame'],steps:['Mix tamari, honey, vinegar, sesame oil, garlic, ginger. Warm gently.','Add cornflour slurry, stir until thickened.','Pan-fry salmon skin-side down 4 min, flip, 2 min more.','Brush with teriyaki glaze.','Reheat rice, cook edamame. Serve together.']},
-tue:{title:'Tuesday \u2014 Turkey Taco Bowls',info:'Serves 4 \u00b7 25 min total',ingredients:['500g lean ground turkey','1 tin black beans, drained','Leftover jasmine rice','2 avocados, diced','Corn','Salsa (GF)','Fresh coriander','Lime wedges','1 tsp cumin, 1 tsp paprika, \u00bd tsp garlic powder'],steps:['Brown turkey, breaking up with a spoon.','Add cumin, paprika, garlic powder. Cook 2 min.','Warm black beans and corn.','Build bowls: rice, turkey, beans, corn, avocado, salsa, coriander, lime.']},
-wed:{title:'Wednesday \u2014 Lemon Garlic Shrimp Pasta',info:'Serves 4 \u00b7 20 min total',ingredients:['400g GF penne','500g raw shrimp','200g baby spinach','200g cherry tomatoes, halved','4 cloves garlic, sliced','50g butter','Juice & zest of 1 lemon','Chilli flakes','Parmesan'],steps:['Cook GF penne 1 min under. Reserve 100ml pasta water.','Melt butter, saut\u00e9 garlic and chilli 1 min.','Add shrimp, cook 2-3 min until pink.','Add tomatoes, spinach, lemon juice and zest.','Toss in pasta with splash of pasta water. Serve with parmesan.']},
-thu:{title:'Thursday \u2014 Slow Cooker Chicken Tikka Masala',info:'Serves 4 \u00b7 10 min prep \u00b7 6-8 hrs',ingredients:['600g chicken thighs (skinless), cubed','1 jar GF tikka masala paste','1 tin chopped tomatoes','1 tin coconut cream','1 onion, diced','Basmati rice','Raita: yoghurt, cucumber, mint, cumin'],steps:['Morning: add chicken, tomatoes, tikka paste, onion to slow cooker.','Cook on low 6-8 hours.','30 min before serving, stir in coconut cream.','Cook basmati rice. Mix raita.','Serve curry over rice with raita.']},
-fri:{title:'Friday \u2014 Grilled Lean Steak with Baked Potatoes',info:'Serves 4 \u00b7 30 min total',ingredients:['600g sirloin steak','4 large baking potatoes','Romaine lettuce','Parmesan','Caesar dressing: yoghurt, lemon, garlic, parmesan, olive oil','GF croutons (optional)'],steps:['Bake potatoes at 200\u00b0C for 1 hr (or microwave 10 + oven 20 min).','Bring steak to room temp 30 min before.','Season. Grill 3-4 min per side for medium.','Rest 5 min, slice against the grain.','Toss lettuce with Caesar dressing. Serve alongside.']},
-sat:{title:'Saturday \u2014 Homemade Margherita Pizza',info:'Serves 4 \u00b7 30 min \u00b7 Family activity!',ingredients:['4 GF pizza bases','Passata or pizza sauce','2 balls fresh mozzarella, sliced','Fresh basil','Olive oil','Optional: chicken, peppers, mushrooms, olives','Side salad'],steps:['Preheat oven to 220\u00b0C.','Spread passata on GF bases.','Top with mozzarella and extras.','Bake 10-12 min until bubbling and crispy.','Tear basil over, drizzle oil. Serve with salad.']}
+function showTab(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  event.target.classList.add('active');
 }
-function openRecipe(k){const r=R[k];document.getElementById('recipeContent').innerHTML='<button class="close-btn" onclick="closeRecipe()">&times;<\/button><h3>'+r.title+'<\/h3><div class="recipe-info">'+r.info+'<\/div><h4>Ingredients<\/h4><ul>'+r.ingredients.map(i=>'<li>'+i+'<\/li>').join('')+'<\/ul><h4>Method<\/h4><ol>'+r.steps.map(s=>'<li>'+s+'<\/li>').join('')+'<\/ol>';document.getElementById('recipeOverlay').classList.add('open');document.body.style.overflow='hidden'}
-function closeRecipe(){document.getElementById('recipeOverlay').classList.remove('open');document.body.style.overflow=''}
-document.addEventListener('keydown',e=>{if(e.key==='Escape')closeRecipe()})
-<\/script>
+document.querySelectorAll('.shop-item input[type=checkbox]').forEach(cb => {
+  cb.addEventListener('change', function() { this.closest('.shop-item').classList.toggle('checked', this.checked); });
+});
+
+const R = {
+  sun: { title:"Sunday — Herb-Crusted Chicken Breast", info:"Serves 4 · Prep 15 min · Cook 35 min",
+    ingredients:["4 chicken breasts (boneless, skinless)","4 medium sweet potatoes, cubed","1 large head broccoli, florets","3 tbsp olive oil","3 cloves garlic, minced","1 tbsp fresh rosemary, chopped","1 tbsp fresh thyme","Zest of 1 lemon","Salt & pepper"],
+    steps:["Preheat oven to 200°C.","Remove chicken from marinade. Place on a lined tray.","Toss sweet potatoes with oil, salt & pepper on a separate tray.","Roast both for 30-35 min until chicken reaches 74°C.","Steam broccoli for the last 5 minutes.","Serve chicken sliced over sweet potatoes and broccoli."]},
+  mon: { title:"Monday — Teriyaki Salmon", info:"Serves 4 · 20 min total",
+    ingredients:["4 salmon fillets","4 tbsp GF tamari","2 tbsp honey","1 tbsp rice vinegar","1 tsp sesame oil","2 cloves garlic, crushed","1 tsp ginger, grated","1 tsp cornflour + 1 tbsp water","Jasmine rice (pre-cooked)","300g edamame"],
+    steps:["Mix tamari, honey, vinegar, sesame oil, garlic, ginger. Warm gently.","Add cornflour slurry, stir until thickened.","Pan-fry salmon skin-side down 4 min, flip, 2 min more.","Brush with teriyaki glaze.","Reheat rice, cook edamame. Serve together."]},
+  tue: { title:"Tuesday — Turkey Taco Bowls", info:"Serves 4 · 25 min total",
+    ingredients:["500g lean ground turkey","1 tin black beans, drained","Leftover jasmine rice","2 avocados, diced","Corn","Salsa (GF)","Fresh coriander","Lime wedges","1 tsp cumin, 1 tsp paprika, ½ tsp garlic powder"],
+    steps:["Brown turkey, breaking up with a spoon.","Add cumin, paprika, garlic powder. Cook 2 min.","Warm black beans and corn.","Build bowls: rice, turkey, beans, corn, avocado, salsa, coriander, lime."]},
+  wed: { title:"Wednesday — Lemon Garlic Shrimp Pasta", info:"Serves 4 · 20 min total",
+    ingredients:["400g GF penne","500g raw shrimp","200g baby spinach","200g cherry tomatoes, halved","4 cloves garlic, sliced","50g butter","Juice & zest of 1 lemon","Chilli flakes","Parmesan"],
+    steps:["Cook GF penne 1 min under. Reserve 100ml pasta water.","Melt butter, sauté garlic and chilli 1 min.","Add shrimp, cook 2-3 min until pink.","Add tomatoes, spinach, lemon juice and zest.","Toss in pasta with splash of pasta water. Serve with parmesan."]},
+  thu: { title:"Thursday — Slow Cooker Chicken Tikka Masala", info:"Serves 4 · 10 min prep · 6-8 hrs",
+    ingredients:["600g chicken thighs (skinless), cubed","1 jar GF tikka masala paste","1 tin chopped tomatoes","1 tin coconut cream","1 onion, diced","Basmati rice","Raita: yoghurt, cucumber, mint, cumin"],
+    steps:["Morning: add chicken, tomatoes, tikka paste, onion to slow cooker.","Cook on low for 6-8 hours.","30 min before serving, stir in coconut cream.","Cook basmati rice. Mix raita.","Serve curry over rice with raita."]},
+  fri: { title:"Friday — Grilled Lean Steak with Baked Potatoes", info:"Serves 4 · 30 min total",
+    ingredients:["600g sirloin steak","4 large baking potatoes","Romaine lettuce","Parmesan","Caesar dressing: yoghurt, lemon, garlic, parmesan, olive oil","GF croutons (optional)"],
+    steps:["Bake potatoes at 200°C for 1 hr (or microwave 10 + oven 20 min).","Bring steak to room temp 30 min before.","Season. Grill 3-4 min per side for medium.","Rest 5 min, slice against the grain.","Toss lettuce with Caesar dressing. Serve alongside."]},
+  sat: { title:"Saturday — Homemade Margherita Pizza", info:"Serves 4 · 30 min · Family activity!",
+    ingredients:["4 GF pizza bases","Passata or pizza sauce","2 balls fresh mozzarella, sliced","Fresh basil","Olive oil","Optional: chicken, peppers, mushrooms, olives","Side salad"],
+    steps:["Preheat oven to 220°C.","Spread passata on GF bases.","Top with mozzarella and extras.","Bake 10-12 min until bubbling and crispy.","Tear basil over, drizzle oil. Serve with salad."]}
+};
+
+function openRecipe(k) {
+  const r = R[k];
+  document.getElementById('recipeContent').innerHTML =
+    `<button class="close-btn" onclick="closeRecipe()">&times;</button>
+    <h3>${r.title}</h3><div class="recipe-info">${r.info}</div>
+    <h4>Ingredients</h4><ul>${r.ingredients.map(i=>`<li>${i}</li>`).join('')}</ul>
+    <h4>Method</h4><ol>${r.steps.map(s=>`<li>${s}</li>`).join('')}</ol>`;
+  document.getElementById('recipeOverlay').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeRecipe() {
+  document.getElementById('recipeOverlay').classList.remove('open');
+  document.body.style.overflow='';
+}
+document.addEventListener('keydown', e => { if(e.key==='Escape') closeRecipe(); });
+</script>
 </body>
-  </html>
+</html>
